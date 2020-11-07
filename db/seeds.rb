@@ -192,17 +192,17 @@ Subcategory.create(
         {
             name: 'Chile',
             category_id: 3,
-            bookmark_id: 5
+            bookmark_id: 12
         },
         {
             name: 'Notebooks',
             category_id: 4,
-            bookmark_id: 6
+            bookmark_id: 17
         },
         {
             name: 'Coronavirus',
             category_id: 5,
-            bookmark_id: 7
+            bookmark_id: 20
         }
     ]
 )

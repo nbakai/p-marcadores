@@ -26,7 +26,7 @@
         <%= form_with(url: add_category_path(bookmark.id), local: true) do |f|%>
         <% @filtered_categories = @categories.reject{|category| bookmark.categories.include?(category)}%>
         <td>
-          <%= f.select :category_id, options_from_collection_for_select(@filtered_categories, :id, :name), prompt: 'Categoría'%>
+          <%= f.select :category_id, options_from_collection_for_select(@filtered_categories, :id, :name), selected: 0, prompt: 'Categoría'%>
           <%= f.submit 'Agregar'%>
         </td>
           <%end%>
