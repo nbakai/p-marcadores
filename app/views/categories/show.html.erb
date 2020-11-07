@@ -3,10 +3,11 @@
   Categoría: <br>
  <strong> <%= @category.name %> </strong>
 </h3>
-  
- <% @category.subcategories.each do |subcat| %>
- Subcategoría: <br>
- <h4><%= subcat.name %></h4>
+<% if @category.subcategories != nil %>
+    <% @category.subcategories.each do |subcat| %>
+    Subcategoría: <br>
+    <h4><%= subcat.name %></h4>
+<%end%>
  <table>
   <thead>
     <tr>
