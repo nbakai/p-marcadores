@@ -24,7 +24,7 @@
         <td><%= bookmark.url %></td>
         <td><%= bookmark.tipo.name %></td>
         
-        <%= form_with(url: add_category_path(bookmark.id), remote: true, method: :post) do |f|%>
+        <%= form_with(url: add_category_path(bookmark.id), method: :post) do |f|%>
         <% @filtered_categories = @categories.reject{|category| bookmark.categories.include?(category)}%>
         <td>
           <%= f.select :category_id, options_from_collection_for_select(@filtered_categories, :id, :name), selected: 0, prompt: 'Categoría'%>
@@ -48,4 +48,5 @@
 
 <br>
 
-<%= link_to 'New Bookmark', new_bookmark_path %>
+<%= link_to 'New Bookmark', new_bookmark_path %> <br>
+<%= link_to 'Nueva subcategoría', new_subcategorie_path%>

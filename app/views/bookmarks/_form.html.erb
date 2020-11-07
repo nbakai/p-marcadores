@@ -20,7 +20,7 @@
     <%= form.label :tipo %>
     <%= form.select :tipo_id, @tipos.map{|tipo| [tipo.name, tipo.id] }, selected: 0, prompt: "Seleccione una opción.." %>
   </div>
-
+  
   <div class="actions">
     <%= form.submit 'Enviar', data: {disable_with: 'Enviando...'} %>
   </div>
