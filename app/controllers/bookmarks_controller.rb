@@ -31,6 +31,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/1
   # GET /bookmarks/1.json
   def show
+    
     @bookmark = Bookmark.find(params[:id])
   end
 

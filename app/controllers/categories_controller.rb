@@ -11,6 +11,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+   
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :show}
+    end
   end
 
   # GET /categories/new
