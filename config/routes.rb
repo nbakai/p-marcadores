@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :bookmarks
   resources :tipos
+  patch '/bookmarks', to: 'bookmarks#update'
   post 'bookmarks/:id/add_category', to: 'bookmarks#add_category', as: 'add_category'
   post 'bookmarks/:id/add_subcategory', to: 'bookmarks#add_subcategory', as: 'add_subcategory'
   delete 'bookmarks/:id/remove_category/:category_id', to: 'bookmarks#remove_category', as: 'remove_category'

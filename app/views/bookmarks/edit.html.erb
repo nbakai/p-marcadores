@@ -1,6 +1,29 @@
 <h1>Editing Bookmark</h1>
 
-<%= render 'form', bookmark: @bookmark %>
+<%= form_with(url: bookmarks_path, model:  @bookmark, remote: true, data: { confirm: 'Are you sure?'} ) do |form| %>
+  <% if @bookmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+
+      <ul>
+      <% @bookmark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit 'Enviar', data: {disable_with: 'Enviando...'} %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @bookmark %> |
 <%= link_to 'Back', bookmarks_path %>

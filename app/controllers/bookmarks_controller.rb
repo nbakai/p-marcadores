@@ -67,7 +67,7 @@ class BookmarksController < ApplicationController
   def update
     respond_to do |format|
       if @bookmark.update(bookmark_params)
-        format.html { redirect_to @bookmark, notice: 'Bookmark was successfully updated.' }
+        format.html { redirect_to bookmarks_url, notice: 'Bookmark was successfully updated.' }
         format.json { render :show, status: :ok, location: @bookmark }
       else
         format.html { render :edit }
@@ -90,6 +90,7 @@ class BookmarksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bookmark
       @bookmark = Bookmark.find(params[:id])
+    
     end
 
     # Only allow a list of trusted parameters through.
