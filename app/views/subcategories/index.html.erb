@@ -1,0 +1,19 @@
+<h1>Subcategories#index</h1>
+
+
+<table>
+    <thead>
+        <th>nombre</th>
+        <th>category</th>
+        <th>marcador</th>
+    </thead>
+    <tbody>
+        <% @subcategories.each do |subcat|%>
+            <tr>
+                <td><%= subcat.name%> </td>
+                <td><%= subcat.category.name %> </td>
+                <td><%= subcat.bookmark.url%> </td>
+            </tr>
+        <%end %>
+    </tbody>
+</table>

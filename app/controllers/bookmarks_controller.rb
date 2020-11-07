@@ -1,10 +1,29 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :add_category, :remove_category]
+
+  def add_category 
+    
+    @category = Category.find(params[:category_id])
+
+    if @bookmark.categories.include?(@category)
+      redirect_to root_path, alert: 'la categoría ya está agregada'
+    else 
+      @bookmark.categories.push(@category)
+      redirect_to root_path, notice: 'Se ha agregado la categoría'
+    end
+  end
+ 
+  def remove_category
+    @category = Category.find(params[:category_id])
+    @bookmark.categories.delete(@category)
+    redirect_to root_path, notice: 'categoría eliminado'
+  end
 
   # GET /bookmarks
   # GET /bookmarks.json
   def index
     @bookmarks = Bookmark.all
+    @categories = Category.all
   end
 
   # GET /bookmarks/1

@@ -7,6 +7,8 @@
     <tr>
       <th>Url</th>
       <th>Tipo</th>
+      <th>Categorias</th>
+      <th>Subcategorias</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,22 @@
       <tr>
         <td><%= bookmark.url %></td>
         <td><%= bookmark.tipo.name %></td>
+        
+        <% bookmark.categories.each do |category| %>
+          <td><%= category.name%> <%= link_to ' X ', remove_category_path(bookmark.id, category.id), method: :delete%></td>
+        <%end%>
+        
+        <%= form_with(url: add_category_path(bookmark.id), local: true) do |f|%>
+        <% @filtered_categories = @categories.reject{|category| bookmark.categories.include?(category)}%>
+        <td>
+          <%= f.select :category_id, options_from_collection_for_select(@filtered_categories, :id, :name), prompt: 'Categoría'%>
+          <%= f.submit 'Agregar'%>
+        </td>
+          <%end%>
+        <% bookmark.subcategories.each do |subcategory| %>
+          <td><%= subcategory.name%> </td>
+        <%end%>
+        
         <td><%= link_to 'Show', bookmark %></td>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
