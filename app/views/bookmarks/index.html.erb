@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Bookmarks</h1>
-
+<div class="justify-content">
+    <%= pie_chart Bookmark.group(:tipo).count, download: {background: "#ffffff"}, title: "Tipos de marcadares"%>
+</div>
 <table>
   <thead>
     <tr>

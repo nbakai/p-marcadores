@@ -24,6 +24,8 @@ class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
     @categories = Category.all
+    @tipos = Tipo.all
+    
   end
 
   # GET /bookmarks/1
