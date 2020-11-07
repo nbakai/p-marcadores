@@ -1,4 +1,5 @@
 class Bookmark < ApplicationRecord
   belongs_to :tipo
-  validates :tipo, presence: true, allow_blank: false
+  has_and_belongs_to_many :categories
+  has_many :subcategories
 end

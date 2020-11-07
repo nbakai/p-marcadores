@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_001231) do
+ActiveRecord::Schema.define(version: 2020_11_07_023307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,29 @@ ActiveRecord::Schema.define(version: 2020_11_07_001231) do
     t.index ["tipo_id"], name: "index_bookmarks_on_tipo_id"
   end
 
+  create_table "bookmarks_categories", id: false, force: :cascade do |t|
+    t.bigint "bookmark_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["bookmark_id", "category_id"], name: "index_bookmarks_categories_on_bookmark_id_and_category_id"
+    t.index ["category_id", "bookmark_id"], name: "index_bookmarks_categories_on_category_id_and_bookmark_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.integer "bookmark_id"
+    t.integer "category_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bookmark_id"], name: "index_subcategories_on_bookmark_id"
+    t.index ["category_id"], name: "index_subcategories_on_category_id"
+  end
+
   create_table "tipos", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -30,4 +53,6 @@ ActiveRecord::Schema.define(version: 2020_11_07_001231) do
   end
 
   add_foreign_key "bookmarks", "tipos"
+  add_foreign_key "subcategories", "bookmarks"
+  add_foreign_key "subcategories", "categories"
 end
