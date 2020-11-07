@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Category.delete_all
-Subcategory.delete_all 
 Bookmark.delete_all
+Subcategory.delete_all 
 Tipo.delete_all
 
 Tipo.create(
