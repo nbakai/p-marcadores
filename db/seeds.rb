@@ -5,7 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Tipo.delete_all
+Category.delete_all
+Subcategory.delete_all 
+Bookmark.delete_all
 
 Tipo.create(
     [
@@ -39,38 +42,7 @@ Category.create(
         }
     ]
 )
-Subcategory.create(
-    [
-        {
-            name: 'Romance',
-            category_id: 1
-        },
-        {
-            name: 'Animación',
-            category_id: 1
-        },
-        {
-            name: 'Pop en inglés',
-            category_id: 2
-        },
-        {
-            name: 'KPOP',
-            category_id: 2
-        },
-        {
-            name: 'Chile',
-            category_id: 3
-        },
-        {
-            name: 'Notebooks',
-            category_id: 4
-        },
-        {
-            name: 'Coronavirus',
-            category_id: 5
-        }
-    ]
-)
+
 Bookmark.create(
     [
         {
@@ -192,6 +164,45 @@ Bookmark.create(
             url: 'https://onlinelibrary.wiley.com/doi/full/10.1111/all.14238',
             tipo_id: 3
             
+        }
+    ]
+)
+Subcategory.create(
+    [
+        {
+            name: 'Romance',
+            category_id: 1,
+            bookmark_id: 1
+        },
+        {
+            name: 'Animación',
+            category_id: 1,
+            bookmark_id: 2
+        },
+        {
+            name: 'Pop en inglés',
+            category_id: 2,
+            bookmark_id: 3
+        },
+        {
+            name: 'KPOP',
+            category_id: 2,
+            bookmark_id: 4
+        },
+        {
+            name: 'Chile',
+            category_id: 3,
+            bookmark_id: 5
+        },
+        {
+            name: 'Notebooks',
+            category_id: 4,
+            bookmark_id: 6
+        },
+        {
+            name: 'Coronavirus',
+            category_id: 5,
+            bookmark_id: 7
         }
     ]
 )
