@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+
+<%= render 'form', bookmark: @bookmark %>
+
 <h1>Bookmarks</h1>
 <div class="justify-content">
-    <%= pie_chart Bookmark.group(:tipo).count, download: {background: "#ffffff"}, title: "Tipos de marcadares"%>
+    <%= pie_chart Bookmark.group(:tipo).count, download: {background: "#ffffff"}, title: "Tipos de marcadores"%>
 </div>
 <table>
   <thead>
@@ -21,17 +24,16 @@
         <td><%= bookmark.url %></td>
         <td><%= bookmark.tipo.name %></td>
         
-        <% bookmark.categories.each do |category| %>
-          <td><%= category.name%> <%= link_to ' X ', remove_category_path(bookmark.id, category.id), method: :delete%></td>
-        <%end%>
-        
-        <%= form_with(url: add_category_path(bookmark.id), local: true) do |f|%>
+        <%= form_with(url: add_category_path(bookmark.id), remote: true, method: :post) do |f|%>
         <% @filtered_categories = @categories.reject{|category| bookmark.categories.include?(category)}%>
         <td>
           <%= f.select :category_id, options_from_collection_for_select(@filtered_categories, :id, :name), selected: 0, prompt: 'Categoría'%>
           <%= f.submit 'Agregar'%>
         </td>
           <%end%>
+        <% bookmark.categories.each do |category| %>
+          <td><%= category.name%> <%= link_to ' X ', remove_category_path(bookmark.id, category.id), method: :delete%></td>
+        <%end%>
         <% bookmark.subcategories.each do |subcategory| %>
           <td><%= subcategory.name%> </td>
         <%end%>

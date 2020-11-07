@@ -6,22 +6,23 @@ class BookmarksController < ApplicationController
     @category = Category.find(params[:category_id])
 
     if @bookmark.categories.include?(@category)
-      redirect_to root_path, alert: 'la categoría ya está agregada'
+      redirect_to bookmarks_path, alert: 'la categoría ya está agregada'
     else 
       @bookmark.categories.push(@category)
-      redirect_to root_path, notice: 'Se ha agregado la categoría'
+      redirect_to bookmarks_path, notice: 'Se ha agregado la categoría'
     end
   end
  
   def remove_category
     @category = Category.find(params[:category_id])
     @bookmark.categories.delete(@category)
-    redirect_to root_path, notice: 'categoría eliminado'
+    redirect_to bookmarks_path, notice: 'categoría eliminado'
   end
 
   # GET /bookmarks
   # GET /bookmarks.json
   def index
+    @bookmark = Bookmark.new
     @bookmarks = Bookmark.all
     @categories = Category.all
     @tipos = Tipo.all
